@@ -49,9 +49,9 @@ public class PerlinWorm
     private Vector3 GetPerlinNoiseDirection()
     {
         float noise = NoiseHelper.SumNoise(currentPosition.x, currentPosition.y, noiseSettings); //0-1
-        float degrees = NoiseHelper.RangeMap(noise, 0, 1, -180, 180);
-        var direction = (Quaternion.AngleAxis(degrees, Vector3.forward) * currentDirection).normalized;
-        return direction;
+        float degrees = NoiseHelper.RangeMap(noise, 0, 1, -90, 90);
+        currentDirection = (Quaternion.AngleAxis(degrees, Vector3.forward) * currentDirection).normalized;
+        return currentDirection;
     }
 
     public List<Vector2> MoveLength(int length)
